@@ -41,5 +41,9 @@ REF : INTELLIPAAT
 ------------------------------------------
 1) delete all the resource group in perticular region eg. west us
 
-1) ~ > get-azresourcegroup -l westus | remove-azresourcegroup
+1) ~ > get-azresourcegroup -l westus | remove-azresourcegroup # prompt y/n
   #~ > remove-azresourcegroup -n <resourcegroup name> # delete one the resource group
+  #  ~> get-azresourcegroup -l westus | remove-azresourcegroup force # delete all without prompt
+1) $ az group list --query "[?location=='westus']".name -o -tsv|xarg -otl az group delete -n 
+   # here  az group list --query "[?location=='westus']".name is query the list of name of resource group in westus location
+   
