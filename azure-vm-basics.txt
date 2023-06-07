@@ -1,0 +1,227 @@
+##############################################
+#
+# author : isaac d
+#
+# date : 23/05/23
+#
+# purpose : azure vm basics
+# 
+# referance : intellipaat
+#
+# last update : 06/06/23 
+#################################################
+# azure account -> tenant -> subcription -> resourse group
+## tenant = azure AD or dirtory,unique representation of oraganization with in azure AD
+
+## subcription = billing arrement between user and azure that user will pay for what he use
+### we can have multiple subcription
+
+## resource group = logical grouping of the resources
+### ex. project1 resources can kept in resorce group
+### one vm can be in one resourse group at a time
+### can create multiple RG with in the subcrition
+
+
+
+                     cloud shell
+#  azure cli - for linux users
+# azure powershell - for windows powershell users 
+## we want to specify storage for it
+## creating resourse group by 
+# azure cli 
+#$ az group create -n bashRG -l centralindia  
+### -n for name , -l for location
+            
+                  azure arm
+## azure resourse manager
+## deploy and management service    
+## deployment,modification,deletion etc are managed
+## user request -> API -> ARM -> resourse provider (eg.compute,storeage,networking)
+## ARM template - deployment as code
+### write code -> submit to arm -> arm will provide as requeste/o
+
+                 azure vm
+# permanent ip
+# vm types
+## general purpose - a seriles
+##high compute -
+#creation of vm 
+## names within bractes are example names 
+## image 
+@ pre installed  os and can select the flavours in market place
+@ image has also small disk image which has 30gb of storage if not 127 gb for windows will be there
+@ image has generation called gen1 (bios) and gen2 (UEFI)
+## core 
+@ no gui only command line interface
+
+## size
+@ dfine compute,ram,mememory etc capacity
+
+inbound port
+@ allow incoming traffic
+for windows = RPD (3389)
+
+# widows vm creation
+viturval machine ->create -> subcription -> resource group (new rg) -> vm name (vm1) ->
+-> region (central india) ->image (windows) -> size (b2ms) -> username (isaac) -> password (p@$Suu0rD) 
+-> pubilc inbound (allow selected ports) -> select inbound ports (RDP 3389) => reviwe + create
+
+# can see deployment process in overview
+connect windows by 
+connect -> RPD -> downloaded rdp ->open -> connect -> password
+
+                    vm disks
+max size of a single 32 tb
+
+# three types of disks
+os disk
+@ containes the os
+@ it represented by c drive in windows
+@ it represented by /sda in linux
+@ data stored in storage cluster (san)
+
+temp disk
+@ for tempravary files
+@ it represented by e drive in windows
+@ it represented by /sdb in linux
+@ no need to pay 
+@ cant modify the size
+@ data stored in compute cluster 
+@
+data disk
+@ disk for seperate data
+@ addtional disk and can attach as data disk 
+@ it represented by d drive in windows
+@ it represented by /sdc in linux
+@ data stored in storage cluster (san)
+
+           based on performance disk
+virtual hard disk(vhd) -> storge account -> storsge area network
+storage area network
+@ has hard disk drive (HDD), soild state drive SSD
+
+standard HDD
+@ vitrual hard disk from azure will go to standard HDD
+standard SSD 
+@ hybrid disk 
+@small capacity for SSD and more of HDD for caching and improvinf the performance
+premium SSD
+@ vitrual hard disk from azure will go to standard SSD
+
+change vm disk
+vm portal -> disks (in left hand side) ->  disk name -> size + perforamance 
+# can increase capasity and can change type
+# cant reduce the size
+iops
+@ input/output operations per second
+@ each read/write operation can be 1 io
+@ how many  io can done in disk in the given minute is iops
+
+throuput
+@ mount of data send or recive in given minute
+@ eg 50mbps
+
+add data disk
+vm portal -> disks (in left hand side) -> create and attach new disk
+->disk name (file disk) -> storage type (standaerd hhd) -> size gb (10) -> save (on the top)
+-> go back to vm ->run -> didkmgmt.ms -> ok -> wait and when you see new disk select it -> new simple volume ->next till end
+
+# max no. of disk can be added is depend upon vm size
+# attaching disk has no downtime
+# increasing the disk has downtime
+
+vm mode
+# restart 
+@ restarting the vm
+@ allocations will be remain
+@ nothing happend to vm
+@ pay for vm,storage
+
+
+#shuddown
+@ vm will shoutdown
+@ allocations will be remain
+@ pay for vm,storage
+
+#stop and deloocate
+@ stop and deallocate compute resources
+@ temp disk will deallocated and data in it will lost
+@ only pay for storage (cost saving)
+@ os disk and data disk will remain same
+@ when we start vm may create in other hardware
+
+
+for testing 
+# create windows vm 
+# log in
+# add a file in c drive(os disk) ,in e drive (data disk), in d drive (temp disk)
+   # shutdown now 
+   @ same pubilc ip
+   @ status was stopped
+   @ vm still allocated
+   @ at start of vm
+   @ add file will remain in all disk
+   @ compute cost and storage cost
+
+# restart now 
+   @ same pubilc ip
+   @ status was stopped
+   @ vm still allocated
+   @ at start of vm
+   @ add file will remain in all disk
+   @ compute cost and storage cost
+ 
+
+# stop now
+   @ vm deaiiocated
+   @ temp file will be lost
+   @ ip will be same
+   @ after start azure may find another hardware and launch vm  
+   @ only storage cost
+
+
+##################################################################################################
+                                 azure vm scale sets
+#################################################################################################
+
+# consept to allow load balancing to workload and increase resourse as per demand
+  @ eg. vm running b2m ( 8gb 2cpu ) running at ponit
+  @ as load increase vm scale set can addtional copies as per needs 
+  @ also act as auto scaling
+  @ scaling policy we have manual ( scaling by user), custom (auto scaling)
+
+create vm scale set
+~ search -> vm scale set -> create vm scale set ->
+basics=> subcripoin () -> resourse group ()-> vm scale  set name (scale set) -> region (central india) ->
+-> image () -> username () -> password () -> next -> 
+spot => next -> disk => next ->
+networking => load balancing  (none/azure load balancer/appication gateway) -> select load balancer (create load bancer)
+-> load balancer name(test lb ) -> type (pubilc/internal) -> ptotocal ( tcp/udp) -> ... ->review + create -> next ->
+scaling =>  inicical instance count (2) -> scaling policy (manual/custom) -> minimum instance () -> maximum instance () ->
+-> scaling out= -> cpu threshold % (75) -> no. of instance increared by (1) -> 
+-> scaling in= -> cpu threshold % (75) -> no. of instance decreared by (1) -> next ->
+-> review + create 
+ 
+# check 
+@ 2 instance will be running
+@ load balancer created and ip assigned
+
+to log in certain instance in load balancer
+~ load balancing -> load balancer -> (load balancer name) -> inbound nat rules -> find and use lb ip:frontend port for log in
+
+#######################################################################################################
+                                          custom image
+######################################################################################################
+# can create image of our own config
+@ we can creating a custom image/vm from a already exited vm
+@ once we create custom image we cant use it
+@@ we should not use production vm for creation custom image
+@ cost same as disk cost
+
+create custom image
+~ create a vm(windows)  -> log in ->add some config -> ctl+r -> sysprep -> enter -> double click sysprep -> enter system out of the box experiance ->
+-> generalize -> shutdown -> ok(dont try this in personal / company laptop or will lost many data) => after the process complete the system will shutdown 
+ 
+vm -> capture -> resource group -> name -> review + create => custom image will be created
+
+vm -> create vm ->subcription -> resouse group -> region -> image (see all images)  -> my image -> select our custom image -> username -> password -> review + create
