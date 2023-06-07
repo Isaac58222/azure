@@ -1,0 +1,45 @@
+######################################################
+AUTHOUR : ISAAC D
+
+REF : INTELLIPAAT
+
+#####################################################
+-----------------------------
+          HANDSON 1
+------------------------------
+!) connect to azure cloudshell
+2) create a resourse group "new-rg" in south central us region
+
+1) ~ log in azure -> shell button on top ->  confirm ->  bash ->
+2) ~$ az gruop create --name new-rg -location southcentralus # creating a resourse group "new-rg" in south central us region
+### $ az account list # find subcription in json
+### $ az account list --output table # find subcription in table
+ -------------------------------------------
+           HANDSON 2
+  ------------------------------------------
+1)connect to azure powershell
+2) create a resourse group "rg-powershell" in south central us region
+
+1) ~ log in azure -> shell button on top ->  confirm ->  powershell ->
+2) ~> New Azresoursegroup -n rg-powershell -l southcentralus
+### -> > Get-AZSubription # find subcription 
+
+-------------------------------------------
+           HANDSON 3
+------------------------------------------
+ 1) create three resourse group in a specific region eg. WEST US
+ 2) list all resource group in  WEST US
+ 
+ 1) ~ > New Azresoursegroup -n isaac1 -l westus && New Azresoursegroup -n isaac2 -l westus && New Azresoursegroup -n isaac3 -l westus
+ 1) ~ $ az group create -n isaac4 -l westus && az group create -n isaac5 -l westus && az group create -n isaac6 -l westus 
+ 2) ~ > get-azresourcegroup  #  list all resource group in  WEST US
+  # ~ >  get-azresourcegroup | format-table  #find resource group in table 
+ 2) ~ $ get-azresourcegroup  #  list all resource group in  WEST US
+ 
+ -------------------------------------------
+           HANDSON 4
+------------------------------------------
+1) delete all the resource group in perticular region eg. west us
+
+1) ~ > get-azresourcegroup -l westus | remove-azresourcegroup
+  #~ > remove-azresourcegroup -n <resourcegroup name> # delete one the resource group
