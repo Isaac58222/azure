@@ -8,7 +8,7 @@
 # 
 # referance : intellipaat
 #
-# last update : 06/06/23 
+# last update : 08/06/23 
 #################################################
 # azure account -> tenant -> subcription -> resourse group
 ## tenant = azure AD or dirtory,unique representation of oraganization with in azure AD
@@ -191,17 +191,19 @@ for testing
   @ scaling policy we have manual ( scaling by user), custom (auto scaling)
 
 create vm scale set
-~ search -> vm scale set -> create vm scale set ->
+1)~ search -> vm scale set -> create vm scale set ->
 basics=> subcripoin () -> resourse group ()-> vm scale  set name (scale set) -> region (central india) ->
--> image () -> username () -> password () -> next -> 
+-> image (ubuntu) -> username () -> password () -> next -> 
 spot => next -> disk => next ->
-networking => load balancing  (none/azure load balancer/appication gateway) -> select load balancer (create load bancer)
--> load balancer name(test lb ) -> type (pubilc/internal) -> ptotocal ( tcp/udp) -> ... ->review + create -> next ->
-scaling =>  inicical instance count (2) -> scaling policy (manual/custom) -> minimum instance () -> maximum instance () ->
+networking => interwork interface(select pen icon) -> public inbound rule port (ssh,http,https,rdp) pubilc ip (enable)-> 
+load balancing  (none/azure load balancer/appication gateway) -> select load balancer (create load bancer) ->
+-> load balancer name(test lb ) -> type (pubilc/internal) -> ptotocal ( tcp/udp) -> 
+->scaling =>  inicical instance count (2) -> scaling policy (manual/custom) -> minimum instance () -> maximum instance () ->
 -> scaling out= -> cpu threshold % (75) -> no. of instance increared by (1) -> 
--> scaling in= -> cpu threshold % (75) -> no. of instance decreared by (1) -> next ->
+-> scaling in= -> cpu threshold % (25) -> no. of instance decreared by (1) -> next ->
 -> review + create 
- 
+  
+
 # check 
 @ 2 instance will be running
 @ load balancer created and ip assigned
