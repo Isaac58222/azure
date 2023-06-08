@@ -1,3 +1,5 @@
+
+
 ```diff
 NOTE
 + This repo has the notes and handson about azure by ISAAC D
@@ -5,6 +7,7 @@ NOTE
 + make unique attractive readme for azure with some emojies
 ```
 
+<p align="left"> <img src="https://komarev.com/ghpvc/?username=isaac58222&label=Profile%20views&color=0e75b6&style=flat" alt="isaac58222" /> </p>
 
 
 
