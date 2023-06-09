@@ -11,7 +11,7 @@ REF : INTELLIPAAT
 2) create a resourse group "new-rg" in south central us region
 
 1) ~ log in azure -> shell button on top ->  confirm ->  bash ->
-2) ~$ az gruop create --name new-rg -location southcentralus # creating a resourse group "new-rg" in south central us region
+2) ~$ az group create --name new-rg -location southcentralus # creating a resourse group "new-rg" in south central us region
 ### $ az account list # find subcription in json
 ### $ az account list --output table # find subcription in table
  -------------------------------------------
