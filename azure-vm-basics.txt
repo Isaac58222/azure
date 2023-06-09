@@ -8,7 +8,8 @@
 # 
 # referance : intellipaat
 #
-# last update : 08/06/23 
+# last update : 09/06/23 
+# v :6
 #################################################
 # azure account -> tenant -> subcription -> resourse group
 ## tenant = azure AD or dirtory,unique representation of oraganization with in azure AD
@@ -221,7 +222,9 @@ to log in certain instance in load balancer
 @ cost same as disk cost
 
 create custom image
-~ create a vm(windows)  -> log in ->add some config -> ctl+r -> sysprep -> enter -> double click sysprep -> enter system out of the box experiance ->
+~ create a vm(windows/linux)  -> log in ->add some config ->
+# steps below is for windows to deregister windows unique id or it will show error while creatinganother vm with already registered id
+ctl+r -> sysprep -> enter -> double click sysprep -> enter system out of the box experiance ->
 -> generalize -> shutdown -> ok(dont try this in personal / company laptop or will lost many data) => after the process complete the system will shutdown 
  
 vm -> capture -> resource group -> name -> review + create => custom image will be created
