@@ -230,3 +230,38 @@ ctl+r -> sysprep -> enter -> double click sysprep -> enter system out of the box
 vm -> capture -> resource group -> name -> review + create => custom image will be created
 
 vm -> create vm ->subcription -> resouse group -> region -> image (see all images)  -> my image -> select our custom image -> username -> password -> review + create
+
+###############################################################################################################
+                                availability set
+###############################################################################################################
+availability
+@ even if there is any failure or outage we can still access the resource
+may be two types
+# planned maintainance activity
+@ maintainance , security etc  of the resources
+@ azure notify custermer by email 
+@ custermer can restart as per their time
+@ if custemer didnt after certain time it will forced restart by itself
+
+#un planned downtime
+@ electonics may fail uncertainly
+@ for example when cooling device is not working at a point as the electonics will increase heat when no cooling
+@ heat indicator at a point of heat inidicate all server to shutdown un planedly
+
+for this azure gives 2 solution
+# availabiliity set
+@ for high availability and fault tolorance
+@ deploy more than one instance
+@ it make sure vm not created on same server to avoid single point of failure
+@ it gives two fault domain  and update domain
+   @ fault domain :
+   it place the vm in two diffent rack(where we mount server) as fault domain 0 (fd0), fault domain 1 (fd1) 
+   max fd = 3, default = 2
+   @ update domain
+   couple of server from fd0,fd1 as ud0,ud1,ud2,ud3 etc
+   max ud = 20, default = 5
+ @ planed maintanance activity happens by ud level
+ @ after restrat ud may change in same fd
+
+# availiability zones
+
