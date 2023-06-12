@@ -260,8 +260,29 @@ for this azure gives 2 solution
    @ update domain
    couple of server from fd0,fd1 as ud0,ud1,ud2,ud3 etc
    max ud = 20, default = 5
- @ planed maintanance activity happens by ud level
- @ after restrat ud may change in same fd
+ @ planed maintanance activity happens by ud order first will be ud0
+ @ after restart ud may change in same fd
+ @ however it only protect data at rack level if data center fail data in this case will be lost
+place vm in avalaibility set
+~ aziure ->vm -> create vm -> subcription -> rg -> name -> region -> avalibility options ( availibity set ) ->
+availibity sets (name) => fault domain (2) +> update domain (5) -> ok ->.......=> review + create 
+# create another vm in same region and av set
+# check availibility + scaling 
+# can see 1st vm in fd0 and ud0 and vm 2 in fd1 ,ud1 
 
-# availiability zones
+availiability zones (az)
+@ 2 or more vm shloud be there
+@ availiability zones are ensure from data centre failure
+@ not all region support availiability zones
+@ each data was build at a certain distance
+@ they have their own power,security, network etc to avoid single point of failure
+@ data inter connection will be shere
+@ 1 or 2data centre can called zone as zone1,zone2,zone3
+@ we can use differnt zone for differnt vm
+place vm in avalaibility zone
+~ aziure ->vm -> create vm -> subcription -> rg -> name -> region -> avalibility options ( availibity zone) ->
+availibility zone (zone1) -> ok ->.......=> review + create 
+# create another vm in same region and av set
 
+why  avalaibility set when availiability zones do its job
+  @ not all region support availiability zone in that case we use avalaibility set which availible for all region
